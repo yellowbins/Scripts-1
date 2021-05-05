@@ -63,14 +63,14 @@ function getsign() {
         $.post(signurl, async(error, response, data) =>{
             let get_sign = JSON.parse(data);
             if (get_sign.errno == 0) {
-                $.desc = get_sign.data.tips+` 收益: $ {get_sign.data.bonus.coin}💰\n`;
+                $.desc = get_sign.data.tips+` 收益: $ {get_sign.data.bonus.coin}??\n`;
                 $.log($.desc+"\n"+data);
                 await invite()
             } else if (get_sign.errno == 10053) {
                 $.desc = "【签到结果】"+get_sign.msg+"\n"
                 $.log( "签到结果: "+ $.desc)
             } else {
-                $.sub = `签到失败❌`,
+                $.sub = `签到失败?`,
                 $.desc = `说明: ` + get_sign.msg,
                 $.msg($.name, $.sub, $.desc);
                 return
@@ -105,17 +105,6 @@ function userInfo() {
                 }
                  $.sub= "昵称:"+username+" 现金:"+ chargemoney+" 金币:"+availablecoin
                 $.log("获取用户信息成功，昵称: "+username+ " 现金:"+chargemoney+"元");
-
-    
-          
-            
-          
-          
-            
-          
-    
-    @@ -158,6 +164,31 @@ function invite() {
-  
                 if (chargemoney >= withcash && $.time("HH") == 6) {
                     await withDraw(withcash)
                 }
@@ -242,7 +231,7 @@ function TaskCenter() {
               if(signs[z].is_checkin == 0){
                 await getsign()
               } else {
-                $.desc = "【签到结果】✅ 明日收益"+signs[Number(z)+1].coin_reward+"金币\n"
+                $.desc = "【签到结果】? 明日收益"+signs[Number(z)+1].coin_reward+"金币\n"
              }
             }
            }
@@ -259,7 +248,7 @@ function TaskCenter() {
 async function getConfigs() {
     if (arr.taskStatus == 1) {
         $.log(taskName + " ID:" + id + " 已完成") 
-        $.desc += taskName + " ✅ 已完成\n"
+        $.desc += taskName + " ? 已完成\n"
     } else if (taskType == 'openApp') {
         tid = tid == '395' ? "385": tid; 
         RefererUrl = arr.adLink; 
@@ -320,7 +309,7 @@ function get_pkg(tid) {
                 //$.log("\n"+taskid +" "+ Pkg)
                 await activeBox()
             } else if (get_pkg.errno == 0 && get_pkg.data.isDone == 1) {
-                $.desc += taskName + "✅ 已完成\n";       
+                $.desc += taskName + "? 已完成\n";       
                 $.log(taskName + "已完成\n")
             }
             resolve()
